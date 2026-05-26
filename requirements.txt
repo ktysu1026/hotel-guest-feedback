@@ -1,4 +1,5 @@
 streamlit
-transformers
+transformers<5.0.0
 torch
 sentencepiece
+pandas
