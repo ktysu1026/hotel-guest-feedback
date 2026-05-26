@@ -3,3 +3,4 @@ transformers<5.0.0
 torch
 sentencepiece
 pandas
+huggingface_hub
