@@ -19,7 +19,6 @@ import pandas as pd
 import streamlit as st
 from huggingface_hub import login
 from transformers import pipeline
-import altair as alt
 
 # ----------------------------------------------------------------------------
 # Config
