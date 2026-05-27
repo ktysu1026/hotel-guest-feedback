@@ -182,12 +182,12 @@ else:
             c4.metric("🟢 Positive", f"{counts.get('positive',0)} ({counts.get('positive',0)/total*100:.0f}%)")
 
             # ---- sentiment bar chart ---- 
-          chart_df = pd.DataFrame( 
-          {"count": [counts.get(s, 0) for s in ["negative", "neutral", 
+            chart_df = pd.DataFrame( 
+              {"count": [counts.get(s, 0) for s in ["negative", "neutral", 
                                                 "positive"]]}, 
-          index=["negative", "neutral", "positive"], ) 
+              index=["negative", "neutral", "positive"], ) 
         
-          st.bar_chart(chart_df)
+            st.bar_chart(chart_df)
 
             # ---- complaint themes among negatives ----
             st.subheader("⚠️ Top complaint themes (negative reviews)")
