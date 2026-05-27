@@ -19,6 +19,8 @@ import pandas as pd
 import streamlit as st
 from huggingface_hub import login
 from transformers import pipeline
+import altair as alt
+
 
 # ----------------------------------------------------------------------------
 # Config
@@ -186,7 +188,16 @@ else:
                                                 "positive"]]}, 
               index=["negative", "neutral", "positive"], ) 
         
-            st.bar_chart(chart_df)
+            chart = (
+              alt.Chart(chart_df.reset_index())
+              .mark_bar()
+              .encode(
+                x=alt.X("index:N", axis=alt.Axis(labelAngle=0, title=None)),
+                y=alt.Y("count:Q", title="Count"),
+              )
+            )
+
+st.altair_chart(chart, use_container_width=True)
 
             # ---- complaint themes among negatives ----
             st.subheader("⚠️ Top complaint themes (negative reviews)")
