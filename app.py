@@ -212,7 +212,15 @@ else:
                         {"count": [c for _, c in theme_counts.most_common()]},
                         index=[a for a, _ in theme_counts.most_common()],
                     )
-                    st.bar_chart(theme_df)
+                    chart = (
+                      alt.Chart(theme_df.reset_index())
+                        .mark_bar()
+                        .encode(
+                          x=alt.X("index:N", axis=alt.Axis(labelAngle=0, title=None)),
+                          y=alt.Y("count:Q", title="Count"),
+                        )
+                    )
+                  st.altair_chart(chart, use_container_width=True)
                 else:
                     st.write("No specific themes detected above threshold.")
             else:
