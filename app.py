@@ -220,7 +220,8 @@ else:
                           y=alt.Y("count:Q", title="Count"),
                         )
                     )
-                  st.altair_chart(chart, use_container_width=True)
+                    st.altair_chart(chart, use_container_width=True)
+              
                 else:
                     st.write("No specific themes detected above threshold.")
             else:
