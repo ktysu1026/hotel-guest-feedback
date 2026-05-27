@@ -24,7 +24,7 @@ from transformers import pipeline
 # Config
 # ----------------------------------------------------------------------------
 # CHANGE THIS to your pushed fine-tuned model repo
-SENTIMENT_MODEL = "ktysu1026/tripadvisor-cardiff-3class"
+SENTIMENT_MODEL = "YOUR_HF_USERNAME/tripadvisor-cardiff-3class"
 ASPECT_MODEL = "valhalla/distilbart-mnli-12-1"
 SUMMARY_MODEL = "sshleifer/distilbart-cnn-12-6"
 
@@ -36,10 +36,11 @@ if HF_TOKEN:
     login(token=HF_TOKEN)
 
 ASPECTS = [
-    "cleanliness", "staff and service", "location",
-    "noise", "value for money", "room comfort", "food",
+    "cleanliness and tidiness of the room", "staff and service", "hotel location",
+    "noise and quietness", "value for money", "bed and room comfort", "food and breakfast",
 ]
-ASPECT_THRESHOLD = 0.5
+ASPECT_THRESHOLD = 0.4
+HYPOTHESIS_TEMPLATE = "This hotel review talks about {}."
 
 st.set_page_config(page_title="Hotel Guest Feedback Analyzer", page_icon="🏨", layout="wide")
 
@@ -78,7 +79,8 @@ def classify_sentiment(texts):
 def tag_aspects(texts):
     """Return list of sets of aspects above threshold for each text."""
     asp = load_aspect()
-    out = asp(texts, candidate_labels=ASPECTS, multi_label=True)
+    out = asp(texts, candidate_labels=ASPECTS, multi_label=True,
+              hypothesis_template=HYPOTHESIS_TEMPLATE)
     if isinstance(out, dict):
         out = [out]
     result = []
