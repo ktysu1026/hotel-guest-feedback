@@ -197,7 +197,7 @@ else:
               )
             )
 
-st.altair_chart(chart, use_container_width=True)
+            st.altair_chart(chart, use_container_width=True)
 
             # ---- complaint themes among negatives ----
             st.subheader("⚠️ Top complaint themes (negative reviews)")
