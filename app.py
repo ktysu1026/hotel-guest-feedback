@@ -24,7 +24,7 @@ from transformers import pipeline
 # Config
 # ----------------------------------------------------------------------------
 # CHANGE THIS to your pushed fine-tuned model repo
-SENTIMENT_MODEL = "YOUR_HF_USERNAME/tripadvisor-cardiff-3class"
+SENTIMENT_MODEL = "ktysu1026/tripadvisor-cardiff-3class"
 ASPECT_MODEL = "valhalla/distilbart-mnli-12-1"
 SUMMARY_MODEL = "sshleifer/distilbart-cnn-12-6"
 
