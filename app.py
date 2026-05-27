@@ -25,7 +25,7 @@ from transformers import pipeline
 # ----------------------------------------------------------------------------
 # CHANGE THIS to your pushed fine-tuned model repo
 SENTIMENT_MODEL = "ktysu1026/tripadvisor-cardiff-3class"
-ASPECT_MODEL = "valhalla/distilbart-mnli-12-1"
+ASPECT_MODEL = "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli"
 SUMMARY_MODEL = "sshleifer/distilbart-cnn-12-6"
 
 # The sentiment model is PRIVATE on Hugging Face, so we log in with a token.
