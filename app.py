@@ -219,7 +219,7 @@ else:
                           x=alt.X(
                             "index:N",
                             axis=alt.Axis(
-                            labelAngle=-20,   # slightly tilted
+                            labelAngle=0,   # slightly tilted
                             labelLimit=300,   # allow longer labels
                             title=None
                             )
