@@ -4,3 +4,4 @@ torch
 sentencepiece
 pandas
 huggingface_hub
+altair
