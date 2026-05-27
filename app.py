@@ -19,6 +19,7 @@ import pandas as pd
 import streamlit as st
 from huggingface_hub import login
 from transformers import pipeline
+import altair as alt
 
 # ----------------------------------------------------------------------------
 # Config
@@ -181,11 +182,27 @@ else:
             c4.metric("🟢 Positive", f"{counts.get('positive',0)} ({counts.get('positive',0)/total*100:.0f}%)")
 
             # ---- sentiment bar chart ----
-            chart_df = pd.DataFrame(
-                {"count": [counts.get(s, 0) for s in ["negative", "neutral", "positive"]]},
-                index=["negative", "neutral", "positive"],
+            chart_df = pd.DataFrame({
+              "sentiment": ["negative", "neutral", "positive"],
+              "count": [
+                counts.get("negative", 0),
+                counts.get("neutral", 0),
+                counts.get("positive", 0),
+              ],
+            })
+
+            chart = (
+              alt.Chart(chart_df)
+              .mark_bar()
+              .encode(
+                  x="count:Q",
+                  y=alt.Y("sentiment:N", sort=None),
+                  color="sentiment:N",
+              )
+              .properties(height=200)
             )
-            st.bar_chart(chart_df)
+
+            st.altair_chart(chart, use_container_width=True)
 
             # ---- complaint themes among negatives ----
             st.subheader("⚠️ Top complaint themes (negative reviews)")
