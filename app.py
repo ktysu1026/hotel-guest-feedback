@@ -216,7 +216,14 @@ else:
                       alt.Chart(theme_df.reset_index())
                         .mark_bar()
                         .encode(
-                          x=alt.X("index:N", axis=alt.Axis(labelAngle=0, title=None)),
+                          x=alt.X(
+                            "index:N",
+                            axis=alt.Axis(
+                            labelAngle=-20,   # slightly tilted
+                            labelLimit=300,   # allow longer labels
+                            title=None
+                            )
+                          ),
                           y=alt.Y("count:Q", title="Count"),
                         )
                     )
